@@ -1,0 +1,54 @@
+<?= $this->doctype(); ?>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <?php $this->headTitle()->prepend('Sortie Manga') ?>
+  <?= $this->headTitle() ?>
+  <?= $this->headMeta() ?>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Language" content="fr" />
+  <?php
+    $this->headLink()->appendStylesheet($this->baseUrl('/css/bootstrap.min.css'))
+                     ->appendStylesheet($this->baseUrl('/css/style.css'));
+  ?>
+
+  <?= $this->headLink() ?>
+
+</head>
+
+<body>
+  <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="<?= $this->baseUrl('/') ?>">Manga</a>
+            <div class="nav-collapse">
+              <ul class="nav">
+                <li><a href="<?= $this->url(array('controller' => 'session', 'action' => 'destroy'), 'default', true) ?>">Déconnection</a></li>
+              </ul>
+            </div><!--/.nav-collapse -->
+          </div>
+        </div>
+      </div>
+
+  <div class="container">
+
+    <?= $this->layout()->content ?>
+    <footer>
+      <p>&copy; opsone.net - v1</p>
+    </footer>
+
+  </div> <!-- /container -->
+  <script type="text/javascript">
+    var BASE_URL = "<?= $this->baseUrl('/'); ?>";
+  </script>
+  <?= $this->headScript()->appendFile($this->baseUrl('/js/jquery.js'), 'text/javascript')
+                         ->appendFile($this->baseUrl('/js/bootstrap.min.js'), 'text/javascript')
+  ?>
+
+</body>
+</html>

@@ -1,0 +1,40 @@
+<?= $this->breadcrumb( $this->breadcrumb ) ?>
+<div class="row">
+  <div class="span16">
+     <h1>Statistique iPhone</h1>
+     <br />
+     <table class="table table-bordered">
+       <thead>
+         <tr>
+           <th>#</th>
+           <th class="yellow">Nom du sytème</th>
+           <th class="orange">Modèle</th>
+           <th class="green">Version du système</th>
+           <th class="green">Version app</th>
+           <th class="red">Localisation</th>
+           <th>Vues</th>
+           <th>Push</th>
+           <th>Dernier lancement</th>
+           <th>Premier lancement</th>
+         </tr>
+       </thead>
+       <tbody>
+         <?php foreach($this->paginator as $stat): ?>
+         <tr>
+           <td><?= $stat->pid ?></td>
+           <td><?= urldecode($stat->devicename) ?></td>
+           <td><?= $stat->devicemodel ?></td>
+           <td><?= $stat->deviceversion ?></td>
+           <td><?= $stat->appversion ?></td>
+           <td><?= $stat->locale ?></td>
+           <td><?= $stat->launch ?></td>
+           <td><?= $stat->status ?></td>
+           <td><?= $this->date($stat->modified) ?></td>
+           <td><?= $this->date($stat->created) ?></td>
+         </tr>
+         <?php endforeach; ?>
+       </tbody>
+     </table>
+     <?= $this->paginationControl($this->paginator, null, '_pagination.phtml') ?>
+  </div>
+</div>

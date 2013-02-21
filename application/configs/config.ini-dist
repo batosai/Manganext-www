@@ -1,0 +1,7 @@
+[production]
+
+baseUrl = "http://manga_news.chaufourier.fr/"
+
+[development : production]
+
+baseUrl = "http://manga_new.chaufourier.fr/"

@@ -1,0 +1,17 @@
+<?php if ($this->pageCount > 1): ?>
+<div class="pagination">
+  <ul>
+    <?php if (isset($this->previous)): ?>
+      <li class="prev"><a href="<?= $this->url(array('page' => $this->previous)) . ($_GET ? '?' . http_build_query($_GET, null, '&amp;') : '') ?>">&larr; Précédant</a></li>
+    <?php endif; ?>
+
+    <?php foreach ($this->pagesInRange as $page): ?>
+      <li <?= $page == $this->current ? 'class="active"' : '' ?>><a href="<?= $this->url(array('page' => $page)) . ($_GET ? '?' . http_build_query($_GET, null, '&amp;') : '') ?>" ><?= $page ?></a></li>
+    <?php endforeach; ?>
+
+    <?php if ($this->next): ?>
+      <li class="next"><a href="<?= $this->url(array('page' => $this->next)) . ($_GET ? '?' . http_build_query($_GET, null, '&amp;') : '') ?>">Suivant &rarr;</a></li>
+    <?php endif; ?>
+  </ul>
+</div>
+<?php endif; ?>

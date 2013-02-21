@@ -1,0 +1,247 @@
+options:
+  type: INNODB
+  collate: utf8_general_ci
+  charset: utf8
+
+Model_AdminUser:
+  tableName: admin_users
+  columns:
+    id:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    email:
+      type: string(255)
+      notnull: true
+    password:
+      type: string(40)
+      notnull: true
+    password_salt:
+      type: string(40)
+      notnull: true
+  actAs: [Timestampable]
+Model_Book:
+  tableName: books
+  columns:
+    id:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    editor_id:
+      type: integer(8)
+      unsigned: true
+    name:
+      type: string(255)
+      notnull: true
+    number:
+      type: string(255)
+    editor_name:
+      type: string(255)
+    author_name:
+      type: string(255)
+    text:
+      type: string()
+    state:
+      type: string(255)
+    image_src:
+      type: string(255)
+    image_version:
+      type: integer(8)
+      default: '1'
+    image:
+      type: string(255)
+    website:
+      type: string(255)
+    price:
+      type: 'decimal(11, 2)'
+      default: '0'
+      notnull: true
+    published_at:
+      type: timestamp
+  actAs: [Timestampable]
+  relations:
+    Module:
+      class: Model_Editor
+      local: editor_id
+      foreign: id
+      type: one
+Model_Editor:
+  tableName: editors
+  columns:
+    id:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    name:
+      type: string(255)
+      notnull: true
+  actAs: [Timestampable]
+  relations:
+    Module:
+      class: Model_Book
+      local: id
+      foreign: editor_id
+      type: many
+Model_ApnsDeviceHistory:
+  tableName: apns_device_history
+  columns:
+    pid:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    appname:
+      type: string(255)
+      notnull: true
+    appversion:
+      type: string(25)
+      default: 'NULL'
+    deviceuid:
+      type: string(40)
+      notnull: true
+    devicetoken:
+      type: string(64)
+      notnull: true
+    devicename:
+      type: string(255)
+      notnull: true
+    devicemodel:
+      type: string(100)
+      notnull: true
+    deviceversion:
+      type: string(25)
+      notnull: true
+    pushbadge:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    pushalert:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    pushsound:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    development:
+      type: enum
+      fixed: true
+      values: ['production','sandbox']
+      notnull: true
+      default: 'production'
+    status:
+      type: enum
+      fixed: true
+      values: ['active','uninstalled']
+      notnull: true
+      default: 'active'
+    archived:
+      type: timestamp
+      notnull: true
+Model_ApnsDevice:
+  tableName: apns_devices
+  columns:
+    pid:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    appname:
+      type: string(255)
+      notnull: true
+    appversion:
+      type: string(25)
+      default: 'NULL'
+    deviceuid:
+      type: string(40)
+      notnull: true
+    devicetoken:
+      type: string(64)
+      notnull: true
+    devicename:
+      type: string(255)
+      notnull: true
+    devicemodel:
+      type: string(100)
+      notnull: true
+    deviceversion:
+      type: string(25)
+      notnull: true
+    pushbadge:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    pushalert:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    pushsound:
+      type: enum
+      fixed: true
+      values: ['disabled','enabled']
+      default: 'disabled'
+    development:
+      type: enum
+      fixed: true
+      values: ['production','sandbox']
+      notnull: true
+      default: 'production'
+    status:
+      type: enum
+      fixed: true
+      values: ['active','uninstalled']
+      notnull: true
+      default: 'active'
+    created:
+      type: timestamp
+      notnull: true
+    modified:
+      type: timestamp
+      notnull: true
+      default: '0000-00-00 00:00:00'
+    launch:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+      default: '0'
+    locale:
+      type: string(255)
+Model_ApnsMessage:
+  tableName: apns_messages
+  columns:
+    pid:
+      type: integer(8)
+      unsigned: true
+      primary: true
+      autoincrement: true
+    fk_device:
+      type: integer(8)
+      unsigned: true
+      notnull: true
+    message:
+      type: string(25)
+      default: 'NULL'
+    delivery:
+      type: timestamp
+      notnull: true
+    status:
+      type: enum
+      fixed: true
+      values: ['queued','delivered','failed']
+      notnull: true
+      default: 'active'
+    created:
+      type: timestamp
+      notnull: true
+    modified:
+      type: timestamp
+      notnull: true
+      default: '0000-00-00 00:00:00'
