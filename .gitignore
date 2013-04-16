@@ -1,3 +1,5 @@
 
 # Xcode
 .DS_Store
+public/img/medium/*
+public/img/thumbnails/*
