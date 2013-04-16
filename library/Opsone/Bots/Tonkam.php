@@ -110,7 +110,7 @@ class Opsone_Bots_Tonkam extends Opsone_Bots_Base
 
     $temp = strip_tags($matches[1]);
 
-    preg_match('#vol. ([0-9]+)#U', $temp, $matches);
+    preg_match('#vol. ([0-9]+)#', $temp, $matches);
 
     if ($matches)
       return 'Tome ' . $matches[1];
@@ -169,6 +169,8 @@ class Opsone_Bots_Tonkam extends Opsone_Bots_Base
     $date = new DateTime();
 
     $d = explode('/', $matches[1]);
+
+    if (count($d) < 3) return null;
 
     $date->setDate($d[2], $d[1], $d[0]);
     return $date->format('Y-m-d') . ' 00:00:00';

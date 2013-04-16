@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/bootstrap.php';
 
-$t = new Opsone_Bots_Soleil('http://translate.googleusercontent.com/translate_c?anno=2&depth=1&hl=fr&rurl=translate.google.fr&sl=auto&tl=en&u=http://www.soleilmanga.com/planning.htm&usg=ALkJrhjJoslW1IHgabaXfCKXLTsEJNiuBQ');
+$t = new Opsone_Bots_Tonkam('http://www.tonkam.com/planning_manga.php');
 $t->get();
 exit;
 
