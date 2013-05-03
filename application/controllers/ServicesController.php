@@ -40,7 +40,12 @@ class ServicesController extends Zend_Controller_Action
 
   public function booksAction()
   {
-    $this->_server->setClass('Service_BooksV1');
+    if ($this->_getParam('v') == 1) {
+      $this->_server->setClass('Service_BooksV1');
+    }
+    else {
+      $this->_server->setClass('Service_BooksV2');
+    }
 
     if ($this->_getParam('format') == 'json') {
       echo $this->_server->handle();
